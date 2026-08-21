@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SatFinder Brasil | Internet via Satélite</title>
+
+  <meta
+    name="description"
+    content="Encontre e compare opções de internet via satélite no Brasil."
+  >
+
+  <meta name="theme-color" content="#07111f">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       CABEÇALHO
+  ========================== -->
+
+  <header class="header">
+
+    <a href="#" class="logo">
+      <span>🛰️</span>
+      SatFinder <strong>Brasil</strong>
+    </a>
+
+    <nav class="navigation">
+      <a href="#buscar">Buscar</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#provedores">Provedores</a>
+      <a href="#como-funciona">Como funciona</a>
+    </nav>
+
+    <button
+      class="header-button"
+      type="button"
+      onclick="document.getElementById('buscar').scrollIntoView({behavior:'smooth'})"
+    >
+      Consultar cobertura
+    </button>
+
+  </header>
+
+
+  <!-- =========================
+       HERO / BUSCA
+  ========================== -->
+
+  <main>
+
+    <section class="hero" id="buscar">
+
+      <div class="hero-content">
+
+        <div class="hero-badge">
+          🛰️ COMPARADOR DE INTERNET VIA SATÉLITE
+        </div>
+
+        <h1>
+          Encontre internet
+          <span>onde você estiver.</span>
+        </h1>
+
+        <p class="hero-description">
+          Informe seu CEP e descubra opções de internet via satélite
+          para sua região.
+        </p>
+
+
+        <!-- FORMULÁRIO -->
+
+        <form id="searchForm" class="search-box">
+
+          <div class="input-group">
+
+            <label for="cep">
+              CEP
+            </label>
+
+            <input
+              id="cep"
+              name="cep"
+              type="text"
+              inputmode="numeric"
+              maxlength="9"
+              placeholder="Ex.: 30110-000"
+              autocomplete="postal-code"
+              required
+            >
+
+          </div>
+
+
+          <div class="input-group">
+
+            <label for="profile">
+              Uso principal
+            </label>
+
+            <select id="profile">
+
+              <option value="residencial">
+                🏠 Residencial
+              </option>
+
+              <option value="rural">
+                🌾 Rural / Fazenda
+              </option>
+
+              <option value="empresa">
+                🏢 Empresa
+              </option>
+
+              <option value="viagem">
+                🚐 Viagem
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <button
+            class="search-button"
+            type="submit"
+          >
+            🔎 Encontrar internet
+          </button>
+
+        </form>
+
+
+        <!-- STATUS DA API -->
+
+        <div
+          id="searchStatus"
+          class="search-status"
+          aria-live="polite"
+        ></div>
+
+
+        <div class="trust">
+
+          <span>✓ Consulta de CEP</span>
+          <span>✓ Comparação de planos</span>
+          <span>✓ Links oficiais</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- VISUAL -->
+
+      <div class="hero-visual">
+
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+
+        <div class="earth">
+          🌎
+        </div>
+
+        <div class="satellite">
+          🛰️
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ENDEREÇO ENCONTRADO
+    ========================== -->
+
+    <section class="address-section">
+
+      <div class="container">
+
+        <div
+          id="addressCard"
+          class="address-card hidden"
+        >
+
+          <div class="address-icon">
+            📍
+          </div>
+
+          <div>
+
+            <small>
+              LOCALIZAÇÃO ENCONTRADA
+            </small>
+
+            <h2 id="addressTitle">
+              —
+            </h2>
+
+            <p id="addressDetails">
+              —
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         RESULTADOS
+    ========================== -->
+
+    <section
+      class="results-section"
+      id="resultados"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span>
+              RESULTADOS
+            </span>
+
+            <h2>
+              Opções para sua região
+            </h2>
+
+          </div>
+
+          <div
+            id="resultCount"
+            class="result-count"
+          >
+            Nenhuma busca realizada
+          </div>
+
+        </div>
+
+
+        <div
+          id="resultsGrid"
+          class="results-grid"
+        >
+
+          <div class="empty-results">
+
+            <div class="empty-icon">
+              📡
+            </div>
+
+            <h3>
+              Ainda não pesquisamos sua região
+            </h3>
+
+            <p>
+              Digite seu CEP acima para começar.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROVEDORES
+    ========================== -->
+
+    <section
+      class="providers-section"
+      id="provedores"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span>
+              PROVEDORES
+            </span>
+
+            <h2>
+              Serviços de internet via satélite
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="providers-grid">
+
+          <article class="provider-card">
+
+            <div class="provider-logo starlink-logo">
+              ★
+            </div>
+
+            <div>
+
+              <h3>
+                Starlink
+              </h3>
+
+              <p>
+                Internet via satélite para residências,
+                áreas rurais e viagens.
+              </p>
+
+            </div>
+
+            <a
+              href="https://www.starlink.com/br"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Site oficial ↗
+            </a>
+
+          </article>
+
+
+          <article class="provider-card">
+
+            <div class="provider-logo hughes-logo">
+              H
+            </div>
+
+            <div>
+
+              <h3>
+                Hughesnet
+              </h3>
+
+              <p>
+                Internet via satélite para regiões
+                residenciais e rurais.
+              </p>
+
+            </div>
+
+            <a
+              href="https://www.hughesnet.com.br/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Site oficial ↗
+            </a>
+
+          </article>
+
+
+          <article class="provider-card">
+
+            <div class="provider-logo viasat-logo">
+              V
+            </div>
+
+            <div>
+
+              <h3>
+                Viasat
+              </h3>
+
+              <p>
+                Serviço de internet via satélite
+                para diferentes necessidades.
+              </p>
+
+            </div>
+
+            <a
+              href="https://www.viasat.com/pt-br/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Site oficial ↗
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         COMO FUNCIONA
+    ========================== -->
+
+    <section
+      class="how-section"
+      id="como-funciona"
+    >
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <span>
+            COMO FUNCIONA
+          </span>
+
+          <h2>
+            Encontre sua conexão em 3 passos
+          </h2>
+
+        </div>
+
+
+        <div class="steps">
+
+          <article>
+
+            <strong>
+              01
+            </strong>
+
+            <h3>
+              Informe seu CEP
+            </h3>
+
+            <p>
+              O sistema consulta automaticamente
+              os dados da sua região.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <strong>
+              02
+            </strong>
+
+            <h3>
+              Compare as opções
+            </h3>
+
+            <p>
+              Veja planos e características dos
+              provedores cadastrados.
+            </p>
+
+          </article>
+
+
+          <article>
+
+            <strong>
+              03
+            </strong>
+
+            <h3>
+              Confirme a disponibilidade
+            </h3>
+
+            <p>
+              A confirmação final é feita no
+              site oficial do provedor.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       RODAPÉ
+  ========================== -->
+
+  <footer class="footer">
+
+    <div>
+
+      <strong>
+        🛰️ SatFinder Brasil
+      </strong>
+
+      <p>
+        Comparador independente de internet via satélite.
+      </p>
+
+    </div>
+
+    <div>
+
+      <p>
+        Preços, cobertura e disponibilidade podem variar.
+        Confirme as condições diretamente com o provedor.
+      </p>
+
+    </div>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
